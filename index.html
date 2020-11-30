@@ -51,7 +51,17 @@
      var Lat;
      var Long;
 
-
+              navigator.geolocation.getCurrentPosition(showPosition);
+          
+	      function showPosition(position)
+            {
+              document.getElementById("location").innerHTML="緯度: " + position.coords.latitude+ "<br />經度: " + position.coords.longitude;
+      
+		    Lat= position.coords.latitude;
+      
+		    Long=position.coords.longitude;
+            }
+	      
 
     	 function myTimer()
       {
