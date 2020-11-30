@@ -20,6 +20,12 @@
 
     <div style="text-align:center;" >
 
+    <img id="indeximg" src="img/1.png" width="90%"><br>
+
+    </div>
+
+    <div style="text-align:center;" >
+
     <p id="exp">已累積   經驗值</p>
 
     </div>    
@@ -39,9 +45,12 @@
 
 	 var myVar=setInterval(function(){myTimer()},1000);
 
+	 setInterval(function(){changeImage()},100);
+
      var exp=0;
      var Lat;
      var Long;
+     var i=1;
 
 
       if (navigator.geolocation)
@@ -75,6 +84,22 @@
       }else{
       	document.getElementById("exp").innerHTML="你的位置不在觀音高中";
       }
+
+       function changeImage(){
+
+          i=i+1;
+          if (i==1) {
+          	document.getElementById("indeximg").src="2.PNG";
+          }else if(i==2){
+            document.getElementById("indeximg").src="3.PNG";
+          }else if(i==3){
+            document.getElementById("indeximg").src="4.PNG";
+          }else if(i==4){
+            document.getElementById("indeximg").src="1.PNG";
+            i=1;
+          }
+
+       }
 
 
   
