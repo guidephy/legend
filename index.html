@@ -41,16 +41,16 @@
  
   	
   
- 
+     var i=1;
 
 	 var myVar=setInterval(function(){myTimer()},1000);
 
-	 setInterval(function(){changeImage()},100);
+	           setInterval(function(){changeImage()},1000);
 
      var exp=0;
      var Lat;
      var Long;
-     var i=1;
+
 
 
       if (navigator.geolocation)
@@ -84,29 +84,27 @@
       }else{
       	document.getElementById("exp").innerHTML="你的位置不在觀音高中";
       }
+    	 
+    }
 
-       function changeImage(){
+ function changeImage(){
 
-          i=i+1;
+          
           if (i==1) {
           	document.getElementById("indeximg").src="img/2.PNG";
+          	i=2;
           }else if(i==2){
-            document.getElementById("indeximg").src="img/3.png";
+            document.getElementById("indeximg").src="img/3.PNG";
+            i=3;
           }else if(i==3){
-            document.getElementById("indeximg").src="img/4.png";
+            document.getElementById("indeximg").src="img/4.PNG";
+            i=4;
           }else if(i==4){
             document.getElementById("indeximg").src="img/1.PNG";
             i=1;
           }
 
        }
-
-
-  
-
-    	 
-    }
-
 	
 
 </script>
