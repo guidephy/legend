@@ -2,13 +2,29 @@
 <html lang="zh-tw">
 
 <head>
-<h1>觀高傳說</h1>
+    <script src=jquery-2.2.4.min.js></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>觀高傳說</title>
+
 </head>
 
 <body >
-    
+
+   <div style="text-align:center;" >
+
+	<h1><font color="blue">觀高傳說</font></h1>
+
+   </div>    
+
+    <div style="text-align:center;" >
+
     <p id="exp">已累積   經驗值</p>
 
+    </div>    
+
+  <p id="location"></p>
 
 
 </body>
@@ -32,6 +48,23 @@
 
         document.getElementById("exp").innerHTML="已累積:"+exp+"經驗值";
       }
+
+
+
+
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  
+function showPosition(position)
+  {
+  document.getElementById("location").innerHTML="Latitude: " + position.coords.latitude + "<br />Longitude: " + position.coords.longitude;	
+  }
+
+
+
 
 
 </script>
