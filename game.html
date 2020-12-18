@@ -14,6 +14,39 @@
 
 			var c = canvas.getContext('2d');
 
+
+			var State = {
+					_current: 0,
+					INTRO: 0,
+					LOADING: 1,
+					LOADED: 2
+						}
+
+                window.addEventListener('click', handleClick, false);
+				window.addEventListener('resize', doResize, false);
+
+
+                doResize();
+					
+				function handleClick() {
+					State._current = State.LOADING;
+					fadeToWhite();
+				}
+				
+				function doResize() {
+					canvas.width = document.body.clientWidth;
+					canvas.height = document.body.clientHeight;
+					
+					switch (State._current) {
+						case State.INTRO:
+							showIntro ();
+							break;
+					}
+				}
+
+
+
+
 			var grd=c.createLinearGradient(0,0,canvas.width,canvas.height);
             grd.addColorStop(0,'#ceefff');
             grd.addColorStop(1,'#52bcff');
@@ -34,6 +67,28 @@
 
 	
 
+function fadeToWhite(alphaVal) {
+					// If the function hasn't received any parameters, start with 0.02
+					var alphaVal = (alphaVal == undefined) ? 0.02 : parseFloat(alphaVal) + 0.02;
+					
+					// Set the color to white				
+					c.fillStyle = '#FFFFFF';
+					// Set the Global Alpha
+					c.globalAlpha = alphaVal;
+
+					// Make a rectangle as big as the canvas
+					c.fillRect(0, 0, canvas.width, canvas.height);
+					
+					if (alphaVal < 1.0) {
+						setTimeout(function() {
+							fadeToWhite(alphaVal);
+						}, 30);
+					} else {
+						State._current = State.LOADED;
+					}
+				}
+
+
 
 	function showIntro () {
 					var phrase = "Click or tap the screen to start the game";
@@ -50,7 +105,7 @@
 					c.fillRect(0, 0, canvas.width, canvas.height);
 
 					var logoImg = new Image();
-					logoImg.src = "img/logo.png";
+					logoImg.src = "logo.png";
 
 					// Store the original width value so that we can keep the same width/height ratio later
 					var originalWidth = logoImg.width;
@@ -78,9 +133,15 @@
 					
 					c.fillText (phrase, xCoord, (logo.y + logo.img.height) + 50);
 				}
+
+
+
+
+				
          
          showIntro();
     }
+
 
 	</script>
 
