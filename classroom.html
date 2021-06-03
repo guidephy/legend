@@ -96,20 +96,27 @@ var update = function (modifier) {
   
 };
 
-$(document).on("pagecreate",function(event){
-  $(window).on("orientationchange",function(){
-    if(window.orientation > 0)
-    {
-       hero.x += hero.speed * modifier;
-    }
-    else if (window.orientation == 0)
-    {
-      
-    }else{
-      hero.x -= hero.speed * modifier;
-    }
-  });                   
-});
+
+
+if(window.DeviceOrientationEvent){
+    window.addEventListener('deviceorientation',DeviceOrientationHandler,false);
+}else{
+    alert("您的瀏覽器不支援DeviceOrientation");
+}
+function DeviceOrientationHandler(event){
+    var alpha = event.alpha,beta = event.beta,gamma = event.gamma;
+    if(alpha != null || beta != null || gamma != null){
+      //各個方向旋轉的值
+      //alert("alpha:" + alpha + "<br />beta:" + beta + "<br />gamma:" + gamma)
+         //判斷螢幕方向
+        if( gamma > 0 ){
+           alert("向右傾斜");
+         }else{
+           alert("向左傾斜");
+         }
+     }
+ }
+
 
 // Draw everything
 var render = function () {
