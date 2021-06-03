@@ -77,12 +77,6 @@ var reset = function () {
 // Update game objects
 var update = function (modifier) {
 
- $(document).on("pagecreate","#pageone",function(){
-    $("p").on("swiperight",function(){
-        hero.x += hero.speed * modifier;
-      });                       
-    });
-
 
   if (38 in keysDown&&hero.y>screenW*0.45) { // Player holding up
     hero.y -= hero.speed * modifier;
@@ -100,6 +94,21 @@ var update = function (modifier) {
   // Are they touching?
   
 };
+
+$(document).on("pagecreate",function(event){
+  $(window).on("orientationchange",function(){
+    if(window.orientation > 0)
+    {
+       hero.x += hero.speed * modifier;
+    }
+    else if (window.orientation == 0)
+    {
+      
+    }else{
+      hero.x -= hero.speed * modifier;
+    }
+  });                   
+});
 
 // Draw everything
 var render = function () {
