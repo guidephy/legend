@@ -6,15 +6,20 @@
    
     <title>觀音高中物理課</title>
 
-    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
-    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+ 
+<script>
 
+  </script>
   
 
 </head>
 
 <body >
+
+  alpha:<span id="alpha"></span><br/>
+  beta:<span id="beta"></span><br/>
+  gamma:<span id="gamma"></span><br/>
+    
 
 
 <script>
@@ -98,24 +103,25 @@ var update = function (modifier) {
 
 
 
-if(window.DeviceOrientationEvent){
-    window.addEventListener('deviceorientation',DeviceOrientationHandler,false);
-}else{
-    alert("您的瀏覽器不支援DeviceOrientation");
-}
-function DeviceOrientationHandler(event){
-    var alpha = event.alpha,beta = event.beta,gamma = event.gamma;
-    if(alpha != null || beta != null || gamma != null){
-      //各個方向旋轉的值
-      //alert("alpha:" + alpha + "<br />beta:" + beta + "<br />gamma:" + gamma)
-         //判斷螢幕方向
-        if( gamma > 0 ){
-           alert("向右傾斜");
-         }else{
-           alert("向左傾斜");
-         }
-     }
- }
+  if(window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', function(event) {
+      
+      if(Math.round(alpha)>0){
+        hero.x -= hero.speed * modifier;
+
+      }else{
+
+        hero.x += hero.speed * modifier;
+      }
+
+     
+      g.innerHTML = Math.round(gamma);
+          
+    }, false);
+  }else{
+    document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
+  }
+
 
 
 // Draw everything
